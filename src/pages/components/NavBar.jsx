@@ -1,8 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
-import earthIcon from '../../assests/icons/earth.png';
+import { logoutUser } from '../../services/authService';
+import earthIcon from '../../assets/icons/earth.png';
+
 export default function NavBar() {
-  const { user, loadingUser } = useUser();
+  const { user, loadingUser, setUser } = useUser();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser();     
+      setUser(null);       
+      navigate('/');        
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+  };
 
   return (
     <div className="navbar">
@@ -10,15 +24,19 @@ export default function NavBar() {
         <img src={earthIcon} alt="Earth Icon" className="logo-icon" />
         <h3>Rest Countries</h3>
       </div>
-      {loadingUser ? (
-        <div className="navbar-user">Loading user...</div>
-      ) : user ? (
-        <div className="navbar-user">
-          Logged in as <strong>{user.email}</strong>
-        </div>
-      ) : (
-        <div className="navbar-user">Not logged in</div>
-      )}
+
+      <div className="navbar-user">
+        {loadingUser ? (
+          <span>Loading user...</span>
+        ) : user ? (
+          <>
+            Logged in as <strong>{user.email}</strong>
+            <button onClick={handleLogout} className="logout-btn">Logout</button>
+          </>
+        ) : (
+          <span>Not logged in</span>
+        )}
+      </div>
     </div>
   );
 }

@@ -12,3 +12,4 @@ export const getSessionUser = async () => {
   const res = await api.get('/user/verify/user'); // uses the token from cookie
   return res.data;
 };
+export const logoutUser = () => api.post('/user/logout');

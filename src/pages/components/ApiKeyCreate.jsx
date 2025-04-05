@@ -21,7 +21,7 @@ export default function ApiKeyCreate({ onGenerate }) {
           min="1"
           max="365"
         />
-        <button onClick={handleSubmit}>➕ Generate</button>
+        <button onClick={handleSubmit}>Generate</button>
       </div>
     </>
   );

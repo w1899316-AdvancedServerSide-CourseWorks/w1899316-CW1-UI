@@ -29,7 +29,6 @@ export default function ApiKeyList({ apiKeys, onRevoke }) {
                     onClick={() => handleCopy(key.apiKey)}
                     title="Copy"
                   >
-                    📋
                   </button>
                 </td>
                 <td>{key.createdAt}</td>
@@ -41,7 +40,7 @@ export default function ApiKeyList({ apiKeys, onRevoke }) {
       )}
 
       <button onClick={onRevoke} style={{ marginTop: '15px' }}>
-        🗑️ Revoke All Keys
+        Revoke All Keys
       </button>
     </>
   );
