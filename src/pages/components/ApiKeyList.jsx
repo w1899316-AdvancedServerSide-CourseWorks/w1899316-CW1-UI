@@ -1,9 +1,15 @@
 import React from 'react';
-import deleteIcon from '../../assets/icons/delete.png'; // adjust path if needed
+import deleteIcon from '../../assets/icons/delete.png';
 
 export default function ApiKeyList({ apiKeys, onRevoke, onDelete, onSelect }) {
-  const handleCopy = (text) => {
+  const handleCopy = (e, text) => {
+    e.stopPropagation(); 
     navigator.clipboard.writeText(text);
+  };
+
+  const handleDelete = (e, apiKeyId) => {
+    e.stopPropagation(); 
+    onDelete(apiKeyId);
   };
 
   return (
@@ -23,12 +29,16 @@ export default function ApiKeyList({ apiKeys, onRevoke, onDelete, onSelect }) {
           </thead>
           <tbody>
             {apiKeys.map((key) => (
-              <tr key={key.apiKeyId} onClick={() => onSelect(key.apiKey)} style={{ cursor: 'pointer' }}>
-                <td className="key-cell">
+              <tr key={key.apiKeyId}>
+                <td
+                  className="key-cell"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => onSelect(key.apiKey)}
+                >
                   <span className="key-text">{key.apiKey}</span>
                   <button
                     className="copy-btn"
-                    onClick={() => handleCopy(key.apiKey)}
+                    onClick={(e) => handleCopy(e, key.apiKey)}
                     title="Copy"
                   >
                     📋
@@ -37,16 +47,23 @@ export default function ApiKeyList({ apiKeys, onRevoke, onDelete, onSelect }) {
                 <td>{key.createdAt}</td>
                 <td>{key.expiresAt}</td>
                 <td>
-                <button className="delete-btn" onClick={() => onDelete(key.apiKeyId)}>
-                  <img src={deleteIcon} alt="Delete" className="delete-icon" />
-                </button>
-
+                  <button
+                    className="delete-btn"
+                    onClick={(e) => handleDelete(e, key.apiKeyId)}
+                    title="Delete"
+                  >
+                    <img src={deleteIcon} alt="Delete" className="delete-icon" />
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
+
+      <button onClick={onRevoke} style={{ marginTop: '15px' }}>
+        Revoke All Keys
+      </button>
     </>
   );
 }
