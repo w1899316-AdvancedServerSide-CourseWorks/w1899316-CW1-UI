@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:4000/rest-countries/api',
+  baseURL: 'https://cw1-be.autodock.me/rest-countries/api',
   withCredentials: true,
 });
 
