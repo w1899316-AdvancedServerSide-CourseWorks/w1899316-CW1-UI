@@ -5,7 +5,7 @@ export default function ApiKeyUsageCard({ apiKey, onClose }) {
 
   if (!apiKey) return null;
 
-  const curlCommand = `curl --location 'http://localhost:4000/rest-country/name?name=India'\n--header 'X-API-Key: ${apiKey}'`;
+  const curlCommand = `curl --location 'https://cw1-be.autodock.me/rest-country/name?name=India'\n--header 'X-API-Key: ${apiKey}'`;
 
   const sampleResponse = `[
   {
