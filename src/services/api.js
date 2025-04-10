@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://cw1-be.autodock.me/rest-countries/api',
+  baseURL: process.env.REACT_APP_API_BASE_URL,
   withCredentials: true,
 });
 
