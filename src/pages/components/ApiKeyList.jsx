@@ -60,10 +60,6 @@ export default function ApiKeyList({ apiKeys, onRevoke, onDelete, onSelect }) {
           </tbody>
         </table>
       )}
-
-      <button onClick={onRevoke} style={{ marginTop: '15px' }}>
-        Revoke All Keys
-      </button>
     </>
   );
 }
