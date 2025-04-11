@@ -10,9 +10,9 @@ export default function NavBar() {
 
   const handleLogout = async () => {
     try {
-      await logoutUser();     
-      setUser(null);       
-      navigate('/');        
+      await logoutUser();
+      setUser(null);
+      navigate('/');
     } catch (err) {
       console.error('Logout failed:', err);
     }
@@ -31,6 +31,16 @@ export default function NavBar() {
         ) : user ? (
           <>
             Logged in as <strong>{user.email}</strong>
+            {user.role === 'admin' && (
+              <button
+                onClick={() => navigate('/admin')}
+                className="admin-btn"
+                style={{ marginLeft: '16px' }}
+              >
+                Admin Dashboard
+              </button>
+            )}
+
             <button onClick={handleLogout} className="logout-btn">Logout</button>
           </>
         ) : (
