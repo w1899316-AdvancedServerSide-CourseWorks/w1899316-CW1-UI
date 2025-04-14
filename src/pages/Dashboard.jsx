@@ -21,8 +21,6 @@ export default function Dashboard() {
   const [showModal, setShowModal] = useState(false);
   const [selectedKey, setSelectedKey] = useState(null);
 
-
-  // Redirect to login if user is not authenticated
   useEffect(() => {
     if (!loadingUser && !user) {
       navigate('/');
