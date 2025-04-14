@@ -1,15 +1,19 @@
 import api from './api';
+import { UserDTO } from '../dto/userDto';
 
 export const registerUser = async (userData) => {
-    const response = await api.post('/user/create', userData);
-    return response.data;
+  const response = await api.post('/user/create', userData);
+  return new UserDTO(response.data);
 };
+
 export const loginUser = async (userData) => {
-    const response = await api.post('/user/login', userData);
-    return response.data;
+  const response = await api.post('/user/login', userData);
+  return new UserDTO(response.data);
 };
+
 export const getSessionUser = async () => {
-  const res = await api.get('/user/verify/user'); // uses the token from cookie
-  return res.data;
+  const response = await api.get('/user/verify/user');
+  return new UserDTO(response.data);
 };
+
 export const logoutUser = () => api.post('/user/logout');

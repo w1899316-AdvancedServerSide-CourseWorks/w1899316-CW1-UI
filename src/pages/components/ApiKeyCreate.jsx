@@ -10,7 +10,6 @@ export default function ApiKeyCreate({ onGenerate }) {
 
   return (
     <>
-
       <div className="form-inline" style={{ marginTop: '20px' }}>
         <label htmlFor="expiration">Expiration Days: </label>
         <input
