@@ -32,8 +32,10 @@ export default function Dashboard() {
   const fetchKeys = async () => {
     try {
       const response = await getApiKeys(user.userId);
-      setApiKeys(response.data);
+      console.log("api keys")
+      setApiKeys(response);
     } catch (err) {
+      console.log("failed to fetch api key", err)
       setMessage('Failed to fetch API keys');
     }
   };

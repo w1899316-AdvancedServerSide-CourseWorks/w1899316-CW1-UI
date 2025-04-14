@@ -39,7 +39,7 @@ export default function RegisterPage() {
 
     try {
       await registerUser(formData);
-      setMessage('✅ Registration successful! Redirecting to login...');
+      setMessage('Registration successful! Redirecting to login...');
       setFormData({ firstName: '', lastName: '', email: '', password: '' });
 
       setTimeout(() => {

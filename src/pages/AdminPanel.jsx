@@ -20,7 +20,7 @@ export default function AdminPanel() {
   const fetchUsers = async () => {
     try {
       const res = await getAllUsers();
-      setUsers(res.data);
+      setUsers(res);
     } catch (err) {
       console.error('Failed to fetch users');
     }
@@ -48,7 +48,7 @@ export default function AdminPanel() {
   }, [user]);
 
   if (loadingUser) return <p className="container">Loading...</p>;
-
+  console.log(user)
   return (
     <>
       <Navbar />
